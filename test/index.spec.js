@@ -20,37 +20,44 @@
  * SOFTWARE.
  */
 
-import { expect } from 'chai'
-import { Europa } from 'europa-core/lib/europa'
-import fs from 'fs'
-import glob from 'glob'
-import path from 'path'
+'use strict'
 
-import europa from '../lib/index'
-import { NodeWindowService } from '../lib/service/node-window-service'
+var expect = require('chai').expect
+var Europa = require('europa-core/lib/europa').Europa
+var fs = require('fs')
+var glob = require('glob')
+var path = require('path')
 
-describe('index', () => {
-  describe('default', () => {
-    const htmlFiles = glob.sync('test/fixtures/**.html')
+var europa = require('../lib/index')
+var NodeWindowService = require('../lib/service/node-window-service').NodeWindowService
 
-    it('should be an instance of Europa', () => {
+describe('index', function() {
+  describe('default', function() {
+    var fixture
+    var htmlFile
+    var htmlFiles = glob.sync('test/fixtures/**.html')
+
+    it('should be an instance of Europa', function() {
       expect(europa).to.be.an.instanceof(Europa)
     })
 
-    it('should be using NodeWindowService', () => {
-      expect(europa._windowService).to.be.an.instanceof(NodeWindowService)
+    it('should be using NodeWindowService', function() {
+      expect(europa.windowService).to.be.an.instanceof(NodeWindowService)
     })
 
-    for (const htmlFile of htmlFiles) {
-      const fixture = path.basename(htmlFile, '.html')
+    function testTransform() {
+      var markdownFile = path.join(path.dirname(htmlFile), fixture) + '.md'
+      var html = fs.readFileSync(htmlFile, 'utf8')
+      var expected = fs.readFileSync(markdownFile, 'utf8')
 
-      it(`should transform HTML to Markdown for fixture "${fixture}"`, () => {
-        const markdownFile = `${path.join(path.dirname(htmlFile), fixture)}.md`
-        const html = fs.readFileSync(htmlFile, 'utf8')
-        const expected = fs.readFileSync(markdownFile, 'utf8')
+      expect(europa.transform(html)).to.equal(expected)
+    }
 
-        expect(europa.transform(html)).to.equal(expected)
-      })
+    for (var i = 0; i < htmlFiles.length; i++) {
+      htmlFile = htmlFiles[i]
+      fixture = path.basename(htmlFile, '.html')
+
+      it('should transform HTML to Markdown for fixture "' + fixture + '"', testTransform)
     }
   })
 })

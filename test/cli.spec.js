@@ -20,4 +20,8 @@
  * SOFTWARE.
  */
 
-// TODO: Complete unit tests (incl. fixtures)
+'use strict'
+
+describe('cli', function() {
+  // TODO: Complete unit tests (incl. fixtures)
+})

@@ -24,28 +24,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    babel: {
-      options: {
-        sourceMaps: 'inline'
-      },
-      build: {
-        files: [
-          {
-            expand: true,
-            cwd: 'src/',
-            src: [ '**/*.js' ],
-            dest: 'lib/'
-          }
-        ]
-      }
-    },
-
-    clean: {
-      build: [ 'lib' ]
-    },
-
     eslint: {
-      target: [ 'src/**/*.js', 'test/**/*.js' ]
+      target: [ 'lib/**/*.js', 'test/**/*.js' ]
     },
 
     mochaTest: {
@@ -64,15 +44,14 @@ module.exports = function(grunt) {
         options: {
           spawn: false
         },
-        files: [ 'src/**/*.js', 'test/**/*.js' ],
-        tasks: [ 'build' ]
+        files: [ 'lib/**/*.js', 'test/**/*.js' ],
+        tasks: [ 'test' ]
       }
     }
   })
 
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask('default', [ 'build' ])
-  grunt.registerTask('build', [ 'eslint', 'clean', 'babel', 'mochaTest' ])
+  grunt.registerTask('default', [ 'test' ])
   grunt.registerTask('test', [ 'eslint', 'mochaTest' ])
 }
