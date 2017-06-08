@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Alasdair Mercer, Skelp
+ * Copyright (C) 2017 Alasdair Mercer, !ninja
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,38 +20,36 @@
  * SOFTWARE.
  */
 
+'use strict';
+
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     eslint: {
-      target: [ 'lib/**/*.js', 'test/**/*.js' ]
+      target: [
+        'src/**/*.js',
+        'test/**/*.js',
+        'index.js'
+      ]
     },
 
     mochaTest: {
       test: {
         options: {
-          clearRequireCache: true,
-          require: 'babel-register',
-          reporter: 'spec'
+          reporter: 'list'
         },
-        src: [ 'test/**/*.spec.js' ]
-      }
-    },
-
-    watch: {
-      all: {
-        options: {
-          spawn: false
-        },
-        files: [ 'lib/**/*.js', 'test/**/*.js' ],
-        tasks: [ 'test' ]
+        src: [
+          'test/**/*.spec.js',
+          'test/test.js'
+        ]
       }
     }
   })
 
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask('default', [ 'test' ])
-  grunt.registerTask('test', [ 'eslint', 'mochaTest' ])
+  grunt.registerTask('default', [ 'ci' ]);
+  grunt.registerTask('ci', [ 'eslint', 'mochaTest' ]);
+  grunt.registerTask('test', [ 'eslint', 'mochaTest' ]);
 }

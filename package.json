@@ -1,58 +1,52 @@
 {
   "name": "node-europa",
-  "version": "4.0.0-alpha8",
-  "description": "Node.js version of Europa for transforming HTML to Markdown",
-  "homepage": "https://github.com/Skelp/node-europa",
+  "version": "4.0.0-alpha9",
+  "description": "Node.js module for converting HTML into valid Markdown via Europa",
+  "homepage": "https://github.com/NotNinja/node-europa",
   "bugs": {
-    "url": "https://github.com/Skelp/node-europa/issues"
+    "url": "https://github.com/NotNinja/node-europa/issues"
   },
   "author": {
     "name": "Alasdair Mercer",
-    "email": "alasdair@skelp.io",
-    "url": "https://skelp.io"
+    "email": "mercer.alasdair@gmail.com",
+    "url": "https://not.ninja"
   },
   "license": "MIT",
   "keywords": [
-    "europa",
-    "node",
     "html",
     "markdown",
-    "transform",
-    "convert"
+    "europa",
+    "node"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Skelp/node-europa.git"
+    "url": "https://github.com/NotNinja/node-europa.git"
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "europa-core": "^4.0.0-alpha8",
-    "glob": "^7.0.6",
-    "jsdom": "^9.5.0",
+    "europa-core": "^4.0.0-alpha11",
+    "glob": "^7.1.2",
+    "jsdom": "^11.0.0",
     "mkdirp": "^0.5.1",
-    "oopsy": "^0.1.1"
+    "nevis": "^0.5.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "eslint-config-skelp": "^0.1.5",
-    "glob": "^7.0.6",
+    "chai": "^4.0.2",
+    "eslint-config-notninja": "^0.1.1",
+    "europa-test": "^4.0.0-alpha1",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-eslint": "^18.1.0",
-    "grunt-mocha-test": "^0.12.7",
-    "load-grunt-tasks": "^3.5.0",
-    "mocha": "^3.0.2",
-    "sinon": "^1.17.5"
+    "grunt-eslint": "^19.0.0",
+    "grunt-mocha-test": "^0.13.2",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.4.2"
   },
   "bin": {
     "europa": "bin/europa"
   },
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
+    "ci": "grunt ci",
     "test": "grunt test"
-  },
-  "engines": {
-    "node": ">=4"
   }
 }

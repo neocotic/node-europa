@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /*
  * Copyright (C) 2017 Alasdair Mercer, !ninja
  *
@@ -24,9 +22,10 @@
 
 'use strict';
 
-var CLI = require('../src/CLI');
+var Europa = require('europa-core');
 
-var cli = new CLI(process.stdin, process.stdout);
-cli.parse(process.argv);
+var NodeWindowService = require('./service/window/NodeWindowService');
 
-module.exports = cli;
+Europa.use(new NodeWindowService());
+
+module.exports = Europa;
