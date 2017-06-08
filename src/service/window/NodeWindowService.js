@@ -22,8 +22,8 @@
 
 'use strict';
 
-var JSDOM = require('jsdom').JSDOM;
-var WindowService = require('europa-core/src/service/window/WindowService');
+const { JSDOM } = require('jsdom');
+const WindowService = require('europa-core/src/service/window/WindowService');
 
 /**
  * An implementation of {@link WindowService} intended for use within a Node.js environment that uses the "jsdom" module
@@ -33,20 +33,20 @@ var WindowService = require('europa-core/src/service/window/WindowService');
  * @class
  * @extends WindowService
  */
-var NodeWindowService = WindowService.extend({
+const NodeWindowService = WindowService.extend({
 
   /**
    * @override
    */
-  getDefaultBaseUri: function() {
-    return 'file:///' + process.cwd().replace(/\\/g, '/');
+  getDefaultBaseUri() {
+    return `file:///${process.cwd().replace(/\\/g, '/')}`;
   },
 
   /**
    * @override
    */
-  getWindow: function(baseUri) {
-    var dom = new JSDOM('', { url: baseUri });
+  getWindow(baseUri) {
+    const dom = new JSDOM('', { url: baseUri });
 
     return dom.window;
   },
@@ -54,7 +54,7 @@ var NodeWindowService = WindowService.extend({
   /**
    * @override
    */
-  isCloseable: function(window) {
+  isCloseable(window) {
     return true;
   }
 

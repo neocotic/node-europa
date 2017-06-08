@@ -25,6 +25,8 @@ Install using `npm`:
 $ npm install --save node-europa
 ```
 
+You'll need to have at least [Node.js](https://nodejs.org) 6 or newer.
+
 If you want to use the command line interface, you'll most likely want to install it globally so that you can run
 `europa` from anywhere:
 
@@ -37,13 +39,13 @@ Check out [europa](https://github.com/NotNinja/europa) if you want to install it
 ## Examples
 
 ``` javascript
-var Europa = require('node-europa');
-var express = require('express');
+const Europa = require('node-europa');
+const express = require('express');
 
-var app = express();
+const app = express();
 
-app.get('/md', function(req, res) {
-  var europa = new Europa();
+app.get('/md', (req, res) => {
+  const europa = new Europa();
 
   res.set('Content-Type', 'text/markdown; charset=utf-8');
   res.send(europa.convert('<a href="https://github.com/NotNinja/node-europa">Europa Node</a>'));

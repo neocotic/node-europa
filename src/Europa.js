@@ -22,9 +22,9 @@
 
 'use strict';
 
-var Europa = require('europa-core');
+const Europa = require('europa-core');
 
-var NodeWindowService = require('./service/window/NodeWindowService');
+const NodeWindowService = require('./service/window/NodeWindowService');
 
 Europa.use(new NodeWindowService());
 

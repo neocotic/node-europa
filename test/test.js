@@ -22,15 +22,15 @@
 
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var test = require('europa-test');
+const fs = require('fs');
+const path = require('path');
+const test = require('europa-test');
 
-var Europa = require('../src/Europa');
+const Europa = require('../src/Europa');
 
 test({
-  Europa: Europa,
-  loadFixture: function(fixturePath, callback) {
+  Europa,
+  loadFixture: (fixturePath, callback) => {
     fs.readFile(path.resolve(__dirname, path.join('../node_modules/europa-test', fixturePath)), 'utf8', callback);
   }
 });

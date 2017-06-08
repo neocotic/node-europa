@@ -48,5 +48,8 @@
   "scripts": {
     "ci": "grunt ci",
     "test": "grunt test"
+  },
+  "engines": {
+    "node": ">=6"
   }
 }

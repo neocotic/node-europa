@@ -24,9 +24,7 @@
 
 'use strict';
 
-var CLI = require('../src/CLI');
+const CLI = require('../src/CLI');
 
-var cli = new CLI(process.stdin, process.stdout);
+const cli = new CLI(process.stdin, process.stdout);
 cli.parse(process.argv);
-
-module.exports = cli;

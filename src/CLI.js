@@ -22,16 +22,16 @@
 
 'use strict';
 
-var fs = require('fs');
-var glob = require('glob');
-var mkdirp = require('mkdirp');
-var Nevis = require('nevis/lite');
-var path = require('path');
-var program = require('commander');
-var readline = require('readline');
+const fs = require('fs');
+const glob = require('glob');
+const mkdirp = require('mkdirp');
+const Nevis = require('nevis/lite');
+const path = require('path');
+const program = require('commander');
+const readline = require('readline');
 
-var Europa = require('../src/Europa');
-var version = require('../package.json').version;
+const Europa = require('../src/Europa');
+const { version } = require('../package.json');
 
 /**
  * A command-line interface for converting HTML into Markdown.
@@ -44,7 +44,7 @@ var version = require('../package.json').version;
  * @class
  * @extends Nevis
  */
-var CLI = Nevis.extend(function(input, output) {
+const CLI = Nevis.extend(function(input, output) {
   this._input = input;
   this._output = output;
   this._program = program
@@ -66,14 +66,14 @@ var CLI = Nevis.extend(function(input, output) {
    * @public
    * @memberof CLI#
    */
-  parse: function(args) {
+  parse(args) {
     if (args == null) {
       args = [];
     }
 
     this._program.parse(args);
 
-    var europa = new Europa({
+    const europa = new Europa({
       absolute: this._program.absolute,
       baseUri: this._program.baseUri || null,
       inline: this._program.inline
@@ -91,18 +91,18 @@ var CLI = Nevis.extend(function(input, output) {
     }
   },
 
-  _readFiles: function(files, europa) {
+  _readFiles(files, europa) {
     if (!files.length) {
       return;
     }
 
-    var output = this._program.output ? path.normalize(this._program.output) : null;
+    const output = this._program.output ? path.normalize(this._program.output) : null;
 
-    files.forEach(function(file) {
-      var html = fs.readFileSync(file, CLI.encoding);
-      var markdown = europa.convert(html);
-      var targetDirectory = output || path.dirname(file);
-      var targetFile = path.join(targetDirectory, path.basename(file, path.extname(file)) + '.md');
+    files.forEach((file) => {
+      const html = fs.readFileSync(file, CLI.encoding);
+      const markdown = europa.convert(html);
+      const targetDirectory = output || path.dirname(file);
+      const targetFile = path.join(targetDirectory, `${path.basename(file, path.extname(file))}.md`);
 
       mkdirp.sync(targetDirectory);
 
@@ -110,31 +110,28 @@ var CLI = Nevis.extend(function(input, output) {
     });
   },
 
-  _readInput: function(europa) {
-    var buffer = [];
-    var reader = readline.createInterface({
+  _readInput(europa) {
+    const buffer = [];
+    const reader = readline.createInterface({
       input: this._input,
       output: this._output,
       terminal: false
     });
 
-    reader.on('line', function(line) {
-      buffer.push(line);
-    });
-    reader.on('close', function() {
+    reader.on('line', (line) => buffer.push(line));
+    reader.on('close', () => {
       if (buffer.length) {
         this._readString(buffer.join('\n'), europa);
       }
-    }.bind(this));
+    });
   },
 
-  _readString: function(html, europa) {
-    var markdown = europa.convert(html);
-    var output, target;
+  _readString(html, europa) {
+    const markdown = europa.convert(html);
 
     if (this._program.output) {
-      target = path.normalize(this._program.output);
-      output = path.dirname(target);
+      const target = path.normalize(this._program.output);
+      const output = path.dirname(target);
 
       mkdirp.sync(output);
 

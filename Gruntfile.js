@@ -22,7 +22,7 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = (grunt) => {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -52,4 +52,4 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [ 'ci' ]);
   grunt.registerTask('ci', [ 'eslint', 'mochaTest' ]);
   grunt.registerTask('test', [ 'eslint', 'mochaTest' ]);
-}
+};
