@@ -1,6 +1,6 @@
 {
   "name": "node-europa",
-  "version": "4.0.0-alpha11",
+  "version": "4.0.0-alpha12",
   "description": "Node.js module for converting HTML into valid Markdown via Europa",
   "homepage": "https://github.com/NotNinja/node-europa",
   "bugs": {
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "europa-core": "^4.0.0-alpha13",
+    "europa-core": "^4.0.0-alpha14",
     "glob": "^7.1.2",
     "jsdom": "^11.0.0",
     "mkdirp": "^0.5.1",
