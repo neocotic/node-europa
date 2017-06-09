@@ -58,6 +58,13 @@ app.listen(3000);
 
 You will find documentation for the API on [Europa](https://github.com/NotNinja/europa).
 
+Here's some things to note for this implementation:
+
+* It comes with its own [command-line interface](#cli)!
+* The base URI can be changed via the `baseUri` option. The default value is the current working directory using the
+  `file` protocol.
+* It's encouraged to call `Europa#release()` after jobs to free up resources.
+
 ## CLI
 
     Usage: europa [options] [file ...]
