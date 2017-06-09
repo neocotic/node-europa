@@ -1,6 +1,6 @@
 {
   "name": "node-europa",
-  "version": "4.0.0-alpha14",
+  "version": "4.0.0",
   "description": "Node.js module for converting HTML into valid Markdown via Europa",
   "homepage": "https://github.com/NotNinja/node-europa",
   "bugs": {
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "europa-core": "^4.0.0-alpha16",
+    "europa-core": "^4.0.0",
     "glob": "^7.1.2",
     "jsdom": "^11.0.0",
     "mkdirp": "^0.5.1",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "chai": "^4.0.2",
     "eslint-config-notninja": "^0.1.1",
-    "europa-test": "^4.0.0-alpha1",
+    "europa-test": "^4.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-eslint": "^19.0.0",
